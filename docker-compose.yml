@@ -1,0 +1,47 @@
+# Gather — one command to run the whole demo:  docker compose up --build
+# Then open http://localhost:8080
+
+services:
+  backend:
+    build:
+      context: ./backend
+    image: gather-backend
+    restart: unless-stopped
+    environment:
+      PORT: "4000"
+      DB_PATH: /data/gather.db
+      # The seed builds times relative to "now", so the container's clock
+      # decides what "Heute 18:30" means.
+      TZ: Europe/Zurich
+    volumes:
+      - gather-db:/data
+    expose:
+      - "4000"
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:4000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 15s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+  web:
+    build:
+      # Root context: the image needs both the frontend sources and nginx.conf.
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: gather-web
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Zurich
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  gather-db:
