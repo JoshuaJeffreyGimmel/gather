@@ -4,7 +4,7 @@
  * the top half where the scrim is lightest.
  */
 const POSITION: Record<string, string> = {
-  'hero.jpg': '50% 26%',
+  'hero.jpg': '50% 38%',
   'sport.jpg': '50% 34%',
   'park.jpg': '52% 30%',
   'rooftop.jpg': '54% 32%',
