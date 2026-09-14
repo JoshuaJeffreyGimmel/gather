@@ -196,6 +196,12 @@ Docker is not available in the environment this was built in, so:
 
 ---
 
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+---
+
 ## Ideas that did not make this cut
 
 - Push notifications and a real SMS provider.
