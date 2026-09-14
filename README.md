@@ -1,5 +1,9 @@
 # Gather
 
+> **Note:** This MVP was built with AI assistance as a simple school project — not a
+> production release. That said, the trust mechanics and API are real enough that the
+> approach would hold up as an actual product with further investment.
+
 **Finden · Planen · Treffen** — a working prototype of the Gather app: a mobile-first
 PWA that turns "wir sollten mal" into a real meetup tonight, for 18–25 year olds in
 Zurich. Ten screens, a real API, a real database, real maps.
